@@ -1,0 +1,108 @@
+/* mobile.css */
+:root {
+    --vh: 1vh;
+  }
+  
+  /* 모바일 컨테이너 스타일 */
+  .mobile-container {
+    min-width: 360px;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh; /* fallback */
+    height: calc(var(--vh, 1vh) * 100);
+    overflow-x: hidden;
+    position: relative;
+    background-color: #f9f9f9;
+    /* 불필요한 스크롤 방지 */
+    overflow-y: hidden;
+  }
+  
+  /* 콘텐츠 영역 스타일 */
+  .content-area {
+    padding-top: 56px; /* 헤더 높이 */
+    padding-bottom: 64px; /* 하단 GNB 높이 */
+    height: 100vh; /* fallback */
+    height: calc(var(--vh, 1vh) * 100);
+    width: 100%;
+    /* 컨텐츠가 있을 때만 스크롤 허용 */
+    overflow-y: auto;
+    /* 스크롤이 필요할 때만 표시되도록 변경 */
+    overflow-y: auto;
+    /* 고정 위치 헤더 아래에 위치하도록 */
+    position: relative;
+    /* iOS 스크롤 바운스 효과 방지 */
+    -webkit-overflow-scrolling: touch;
+    /* 스크롤바가 공간을 차지하지 않도록 설정 */
+    scrollbar-width: none;
+  }
+  
+  /* 헤더 스타일 */
+  .app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background-color: #fff;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-bottom: 1px solid #eaeaea;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  
+  /* 하단 GNB 스타일 */
+  .app-gnb {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: #fff;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 1px solid #eaeaea;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  
+  /* 스크롤바 숨기기 */
+  .content-area::-webkit-scrollbar {
+    width: 0px;
+    display: none;
+  }
+  
+  /* 모바일에서 링크 탭 하이라이트 제거 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* 모바일 터치 버튼 스타일 */
+  .touch-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+  
+  /* 세이프 영역 대응 */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .app-gnb {
+      padding-bottom: env(safe-area-inset-bottom);
+      height: calc(64px + env(safe-area-inset-bottom, 0px));
+    }
+    
+    .content-area {
+      padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+  
+  /* 빈 컨텐츠에서 스크롤 방지 */
+  html, body {
+    overscroll-behavior-y: none;
+  }
